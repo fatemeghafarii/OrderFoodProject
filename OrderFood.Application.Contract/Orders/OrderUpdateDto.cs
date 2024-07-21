@@ -14,4 +14,9 @@ namespace OrderFood.Application.Contract.Orders
         public OrderStateEnum OrderState { get; set; }
         public List<OrderItemDto> Items { get; set; } = new List<OrderItemDto>();
     }
+    public record OrderItemDto
+    {
+        public Guid FoodId { get; set; }
+        public int Count { get; set; }
+    }
 }

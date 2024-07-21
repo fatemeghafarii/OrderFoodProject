@@ -19,15 +19,20 @@ namespace OrderFood.Application.Contract.Vendors
         }
         public VendorGetDto MapToArgumentGetById(Vendor vendor)
         {
-            var vendorGetDto = new VendorGetDto()
+            if (vendor != null)
             {
-                Id = vendor.Id,
-                Title = vendor.Title,
-                MinimumBasket = vendor.MinimumBasket,
-                Address = vendor.Address,
-                CreateDate = vendor.CreateDate,
-            };
-            return vendorGetDto;
+                var vendorGetDto = new VendorGetDto()
+                {
+                    Id = vendor.Id,
+                    Title = vendor.Title,
+                    MinimumBasket = vendor.MinimumBasket,
+                    Address = vendor.Address,
+                    CreateDate = vendor.CreateDate,
+                };
+                return vendorGetDto;
+            }
+
+            return null;
         }
     }
 }

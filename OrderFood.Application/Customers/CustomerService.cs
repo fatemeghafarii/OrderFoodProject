@@ -16,6 +16,11 @@ namespace OrderFood.Application.Customers
 
         public async Task<int> CreateAsync(CustomerCreateDto customerCreateDto)
         {
+            //    var customerArg = new CustomerArg(
+            //       Name: customerCreateDto.Name
+            //);
+            //var customer = new Customer(Guid.NewGuid(), customerArg);
+
             var customer = new Customer(Guid.NewGuid(), customerCreateDto.MapToArgument());
             return await _customerRepository.CreateAsync(customer);
         }
@@ -33,28 +38,44 @@ namespace OrderFood.Application.Customers
 
         public async Task<CustomerGetDto?> GetByIdAsync(Guid id)
         {
-            var customer = await _customerRepository.GetAsNoTracking().FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception();
-            return new()
+            var customer = await _customerRepository.GetAsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            if (customer != null)
             {
-                Id = customer.Id,
-                Name = customer.Name,
-            };
+                return new()
+                {
+                    Id = customer.Id,
+                    Name = customer.Name,
+                };
+            }
+
+            return null;
         }
 
         public async Task<int> RemoveAsync(Guid id)
         {
-            var customer = await _customerRepository.GetAsNoTracking().FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception();
-            var customerArg = new CustomerArg
-            (
-               Name: customer.Name
-            );
-            customer = new Customer(id, customerArg);
-            return await _customerRepository.RemoveAsync(customer);
-        }
+            var customer = await _customerRepository.GetAsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            if (customer != null)
+            {
+                var customerArg = new CustomerArg
+                (
+                   Name: customer.Name
+                );
+                
+                customer = new Customer(id, customerArg);
+                return await _customerRepository.RemoveAsync(customer);
+            }
 
+            return 0;
+        }
+        
         public async Task<int> UpdateAsync(CustomerUpdateDto customerUpdateDto)
         {
             var customer = await _customerRepository.GetAsNoTracking().FirstAsync(o => o.Id == customerUpdateDto.Id);
+            //var customerArg = new CustomerArg
+            //(
+            //    Name: customer.Name
+            //);
+
             customer = new Customer(customerUpdateDto.Id, customerUpdateDto.MapToArgument(customer));
             return await _customerRepository.UpdateAsync(customer);
         }

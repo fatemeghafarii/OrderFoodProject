@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderFood.Application.Contract\OrderFood.Application.Contract.csproj" />
     <ProjectReference Include="..\OrderFood.Application\OrderFood.Application.csproj" />
+    <ProjectReference Include="..\OrderFood.DomainService\OrderFood.DomainService.csproj" />
     <ProjectReference Include="..\OrderFood.Persistence.EF\OrderFood.Persistence.EF.csproj" />
   </ItemGroup>
 

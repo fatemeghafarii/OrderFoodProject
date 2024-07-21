@@ -9,8 +9,7 @@ namespace OrderFood.Domain.Orders;
 
 public class Order
 {
-    public Order() {
-    }
+    public Order() { }
     public Order(Guid id, OrderArg orderArg)
     {
         Id = id;

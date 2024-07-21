@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderFood.Application.Contract\OrderFood.Application.Contract.csproj" />
     <ProjectReference Include="..\OrderFood.Domain\OrderFood.Domain.csproj" />
+    <ProjectReference Include="..\OrderFood.Framework.Application\OrderFood.Framework.Application.csproj" />
     <ProjectReference Include="..\OrderFood.Framework.Persistence.EF\OrderFood.Framework.Persistence.EF.csproj" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
   </ItemGroup>
